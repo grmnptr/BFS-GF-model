@@ -1,0 +1,116 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    rho
+    {
+        solver          PCG;
+        preconditioner  FDIC;
+        tolerance       1e-9;
+        relTol          0.1;
+    }
+
+    rhoFinal
+    {
+        $rho;
+        tolerance       1e-9;
+        relTol          0;
+    }
+
+    p_rgh
+    {
+        solver          PCG;
+        preconditioner  FDIC;
+        tolerance		1e-9;
+        relTol          0.01;
+    }
+
+    Phi
+    {
+        $p_rgh;
+    }
+
+    p_rghFinal
+    {
+        $p_rgh;
+        tolerance        1e-9;
+        relTol           0;
+    }
+
+    Usup
+    {
+        $p_rgh;
+        tolerance        1e-9;
+        relTol           0;
+    }
+
+    "(U|h|k|epsilon|R|Tstructures)"
+    {
+      
+      
+        solver           PBiCGStab;
+        preconditioner   DILU;
+        tolerance        1e-9;
+        relTol           0.01;
+    }
+
+    "(U|h|k|epsilon|R|Tstructures)Final"
+    {
+        $U;
+        tolerance        1e-9;
+        relTol           0;
+    }
+}
+
+PIMPLE
+{
+    momentumPredictor true;
+    nCorrectors      5;
+    nNonOrthogonalCorrectors 0;
+    pRefCell        0;
+    pRefValue       0;
+}
+
+relaxationFactors
+{
+    fields
+    {
+        rho             0.6;
+        p               0.60;
+        U               0.60;
+        T               0.6;
+    }
+    equations
+    {
+        "h.*"           0.6;
+        "U.*"           0.6;
+        "p_rgh.*"       0.6;
+    }
+}
+
+potentialFlow
+{
+    nNonOrthogonalCorrectors 4;
+}
+
+cache
+{
+    grad(U);
+}
+
+// ************************************************************************* //

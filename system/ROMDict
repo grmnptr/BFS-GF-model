@@ -1,0 +1,61 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      ROMDict;
+}
+
+// ************************************************************************* //
+// ROM control
+
+solveNeutROM false;
+
+solveEnergyROM false;
+
+solveFluidROM true;
+
+PPESUPSwitch 1;
+
+noSnapshots 5;
+
+createBases true;
+
+readLiftingFunctions true;
+
+// 1 - maunal, 2 - energy retention
+baseSelectionStrategy 1;
+
+enLimit 1.0;
+
+numberOfFluxBases 0;
+
+numberOfPrecBases 0;
+
+numberOfTempBases 0;
+
+numberOfTempBasesDEIM 0;
+
+numberOfMomentumBases 5;
+
+numberOfPressureBases 3;
+
+numberOfSUPBases 3;
+
+numberOfFlowResBases 5;
+
+// ************************************************************************* //
+// Parametrized boundary conditions
+
+parametrizedBoundaryIDs 1 (0);
+parametrizedBoundaryMags 1 (1.0);
+
+// ************************************************************************* //

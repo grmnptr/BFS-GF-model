@@ -1,0 +1,49 @@
+
+/*
+ crossSection dictionary
+ Generatd by serpentToFoamXS 
+ 04-Aug-2014
+ From SERPENT results file: esfr_core__res
+*/
+
+/*
+physical delayed neutron fraction and spectrum
+*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    constant;
+    object      esfr_core__res;
+}
+
+ energyGroups 1 ; 
+
+ precGroups 8 ; 
+ 
+ 
+zones 
+( 
+
+main_fd
+{ 
+ fuelFraction 1.000000e+00 ; 
+ IV nonuniform List<scalar> 1 (3.191130e-06  );
+ D nonuniform List<scalar> 1 (1.549000e-02  );
+ nuSigmaEff nonuniform List<scalar> 1 (0.000000e+00  );
+ sigmaPow nonuniform List<scalar> 1 (0.000000e+00  );
+ scatteringMatrix  1  1 ( 
+ ( 3.848660e+01 )
+ );
+ sigmaDisapp nonuniform List<scalar> 1 (1.775000e-01  );
+ chiPrompt nonuniform List<scalar> 1 (0.000000e+00  );
+ chiDelayed nonuniform List<scalar> 1 (0.000000e+00  );
+ Beta nonuniform List<scalar> 8 (7.905010e-05 7.330980e-04 2.950870e-04 7.014370e-04 1.496760e-03 6.667790e-04 5.617500e-04 2.728450e-04  );
+ lambda nonuniform List<scalar> 8 (1.223860e-02 2.829170e-02 4.252440e-02 1.330420e-01 2.924670e-01 6.664880e-01 1.634780e+00 3.554600e+00  );
+ discFactor nonuniform List<scalar> 1 (1.0  );
+ integralFlux nonuniform List<scalar> 1 (1.0  ); 
+} 
+ 
+); 
